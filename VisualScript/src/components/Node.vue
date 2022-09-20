@@ -1,6 +1,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
     export default defineComponent({
+        setup(){
+            
+        },
         /**
          *  returns data
          */
@@ -40,13 +43,17 @@ import { defineComponent } from 'vue'
              */
             onMouseDrag: function (event: MouseEvent) {
                 event.preventDefault()
+
+                //For now using the type Any, MUST be Changed before Release
+                const node: any = this.$refs.node
+
                 this.positions.movementX = this.positions.clientX - event.clientX
                 this.positions.movementY = this.positions.clientY - event.clientY
                 this.positions.clientX = event.clientX
                 this.positions.clientY = event.clientY
                 // set the element's new position:
-                this.$refs.node.style.top = (this.$refs.node.offsetTop - this.positions.movementY) + 'px'
-                this.$refs.node.style.left = (this.$refs.node.offsetLeft - this.positions.movementX) + 'px'
+                node.style.top = (node.offsetTop - this.positions.movementY) + 'px'
+                node.style.left = (node.offsetLeft - this.positions.movementX) + 'px'
             },
             /**
              * 
